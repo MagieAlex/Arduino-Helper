@@ -18,9 +18,9 @@
 
 ### Download & Installation
 
-1. Klicke oben auf **"Code"** → **"Download ZIP"**
-2. Entpacke die ZIP-Datei auf deinen USB-Stick
-3. Starte `Arduino Helper.exe`
+1. **[Arduino-Helper.zip herunterladen](https://www.dropbox.com/scl/fi/y8oqjbgeb9gtsc85fgmqx/Arduino-Helper.zip?rlkey=pq8aumbj25eql8r07keyqmqcd&st=61esnljc&dl=0)**
+2. ZIP-Datei auf deinen USB-Stick entpacken
+3. `arduino-helper.exe` starten
 4. Fertig! Die Arduino IDE ist bereits dabei.
 
 ---

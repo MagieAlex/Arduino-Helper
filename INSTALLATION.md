@@ -8,29 +8,24 @@ Diese Anleitung erklärt Schritt für Schritt, wie du Arduino Helper auf deinem 
 
 ## Download & Installation
 
-### Schritt 1: Repository herunterladen
+### Schritt 1: Herunterladen
 
-1. Öffne [https://github.com/MagieAlex/Arduino-Helper](https://github.com/MagieAlex/Arduino-Helper)
-2. Klicke auf den grünen **"Code"** Button
-3. Wähle **"Download ZIP"**
-4. Warte bis der Download abgeschlossen ist (~550 MB)
+**[Arduino-Helper.zip herunterladen](https://www.dropbox.com/scl/fi/y8oqjbgeb9gtsc85fgmqx/Arduino-Helper.zip?rlkey=pq8aumbj25eql8r07keyqmqcd&st=61esnljc&dl=0)**
+
+Warte bis der Download abgeschlossen ist (~700 MB).
 
 ### Schritt 2: Entpacken
 
 1. Stecke deinen USB-Stick ein
 2. Öffne den Downloads-Ordner
-3. Rechtsklick auf `Arduino-Helper-main.zip`
+3. Rechtsklick auf `Arduino-Helper.zip`
 4. Wähle **"Alle extrahieren..."**
 5. Als Ziel wählst du deinen USB-Stick (z.B. `E:\`)
 6. Klicke auf **"Extrahieren"**
 
-### Schritt 3: Ordner umbenennen (optional)
+### Schritt 3: Starten
 
-Der entpackte Ordner heißt `Arduino-Helper-main`. Du kannst ihn umbenennen zu `Arduino Helper`.
-
-### Schritt 4: Starten
-
-1. Öffne den Ordner auf deinem USB-Stick
+1. Öffne den Ordner `Arduino Helper` auf deinem USB-Stick
 2. Doppelklicke auf **`Arduino Helper.exe`**
 3. Fertig!
 
