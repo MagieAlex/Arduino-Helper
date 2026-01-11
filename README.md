@@ -18,7 +18,7 @@
 
 ### Download & Installation
 
-1. **[Arduino-Helper.zip herunterladen](https://www.dropbox.com/scl/fi/y8oqjbgeb9gtsc85fgmqx/Arduino-Helper.zip?rlkey=pq8aumbj25eql8r07keyqmqcd&st=61esnljc&dl=0)**
+1. **[Arduino-Helper.zip herunterladen](https://www.dropbox.com/scl/fi/vgne1slyua5zf6my077h8/Arduino-Helper.zip?rlkey=0zpgxk3wcm3teti4qp22wtmm5&st=1t3ksvdz&dl=0)**
 2. ZIP-Datei auf deinen USB-Stick entpacken
 3. `arduino-helper.exe` starten
 4. Fertig! Die Arduino IDE ist bereits dabei.

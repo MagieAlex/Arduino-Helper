@@ -1309,6 +1309,16 @@ body {
   color: var(--text-muted);
 }
 
+.footer-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+}
+
 /* Toast Notifications */
 .toast {
   position: fixed;
