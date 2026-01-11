@@ -1,0 +1,529 @@
+{
+  "meta": {
+    "version": "1.0",
+    "totalProjects": 40,
+    "categories": ["LED", "Taster", "Sensoren", "Display", "Motoren", "Kommunikation"]
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "LED zum Blinken bringen",
+      "description": "Grundlegendes Projekt: Eine LED blinkt im Sekundentakt an und aus.",
+      "difficulty": "Anfänger",
+      "category": "LED",
+      "peripherals": ["LED", "Widerstand 220Ω"],
+      "pins": {
+        "digital": [13],
+        "analog": []
+      },
+      "code": "led_blinken.ino"
+    },
+    {
+      "id": 2,
+      "title": "Zwei LED abwechselnd blinken",
+      "description": "Zwei LEDs blinken abwechselnd - wenn eine an ist, ist die andere aus.",
+      "difficulty": "Anfänger",
+      "category": "LED",
+      "peripherals": ["LED 2x", "Widerstand 220Ω 2x"],
+      "pins": {
+        "digital": [12, 13],
+        "analog": []
+      },
+      "code": "led_abwechselnd.ino"
+    },
+    {
+      "id": 3,
+      "title": "Ampelsteuerung (Auto)",
+      "description": "Simulation einer Verkehrsampel mit korrekten Phasen: Rot → Rot-Gelb → Grün → Gelb → Rot.",
+      "difficulty": "Anfänger",
+      "category": "LED",
+      "peripherals": ["LED rot", "LED gelb", "LED grün", "Widerstand 220Ω 3x"],
+      "pins": {
+        "digital": [10, 11, 12],
+        "analog": []
+      },
+      "code": "ampel_auto.ino"
+    },
+    {
+      "id": 4,
+      "title": "Lauflicht (5 LED nacheinander)",
+      "description": "Knight-Rider-Effekt: 5 LEDs leuchten nacheinander auf und erzeugen ein Lauflicht.",
+      "difficulty": "Anfänger",
+      "category": "LED",
+      "peripherals": ["LED 5x", "Widerstand 220Ω 5x"],
+      "pins": {
+        "digital": [8, 9, 10, 11, 12],
+        "analog": []
+      },
+      "code": "lauflicht.ino"
+    },
+    {
+      "id": 5,
+      "title": "LED mit Taster steuern (Morsen)",
+      "description": "LED leuchtet nur solange der Taster gedrückt wird - ideal zum Morsen.",
+      "difficulty": "Anfänger",
+      "category": "Taster",
+      "peripherals": ["LED", "Widerstand 220Ω", "Taster", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [2, 13],
+        "analog": []
+      },
+      "code": "led_taster_morsen.ino"
+    },
+    {
+      "id": 6,
+      "title": "LED permanent an/aus mit einem Taster",
+      "description": "Toggle-Funktion: Ein Tasterdruck schaltet LED ein, nächster Druck schaltet aus.",
+      "difficulty": "Anfänger",
+      "category": "Taster",
+      "peripherals": ["LED", "Widerstand 220Ω", "Taster", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [2, 13],
+        "analog": []
+      },
+      "code": "led_toggle.ino"
+    },
+    {
+      "id": 7,
+      "title": "LED permanent an/aus mit zwei Tastern",
+      "description": "Ein Taster schaltet LED ein, der andere schaltet sie aus (Stromstoßschaltung).",
+      "difficulty": "Anfänger",
+      "category": "Taster",
+      "peripherals": ["LED", "Widerstand 220Ω", "Taster 2x", "Widerstand 10kΩ 2x"],
+      "pins": {
+        "digital": [2, 3, 13],
+        "analog": []
+      },
+      "code": "led_zwei_taster.ino"
+    },
+    {
+      "id": 8,
+      "title": "Ampelsteuerung mit Fußgängeranforderung",
+      "description": "Autoampel + Fußgängerampel. Taster fordert Grünphase für Fußgänger an.",
+      "difficulty": "Fortgeschritten",
+      "category": "Taster",
+      "peripherals": ["LED 5x", "Widerstand 220Ω 5x", "Taster", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [2, 8, 9, 10, 11, 12],
+        "analog": []
+      },
+      "code": "ampel_fussgaenger.ino"
+    },
+    {
+      "id": 9,
+      "title": "LED Blinkfrequenz mit Potentiometer",
+      "description": "Die Blinkgeschwindigkeit der LED wird über ein Potentiometer gesteuert.",
+      "difficulty": "Anfänger",
+      "category": "Sensoren",
+      "peripherals": ["LED", "Widerstand 220Ω", "Potentiometer 10kΩ"],
+      "pins": {
+        "digital": [13],
+        "analog": ["A0"]
+      },
+      "code": "led_poti_frequenz.ino"
+    },
+    {
+      "id": 10,
+      "title": "LED dimmen mit Potentiometer",
+      "description": "LED-Helligkeit wird stufenlos über Potentiometer per PWM gesteuert.",
+      "difficulty": "Anfänger",
+      "category": "Sensoren",
+      "peripherals": ["LED", "Widerstand 220Ω", "Potentiometer 10kΩ"],
+      "pins": {
+        "digital": [9],
+        "analog": ["A0"]
+      },
+      "code": "led_poti_dimmen.ino"
+    },
+    {
+      "id": 11,
+      "title": "LED mit Dämmerungsschalter",
+      "description": "LED schaltet automatisch ein wenn es dunkel wird (Fotowiderstand/LDR).",
+      "difficulty": "Anfänger",
+      "category": "Sensoren",
+      "peripherals": ["LED", "Widerstand 220Ω", "LDR", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [13],
+        "analog": ["A0"]
+      },
+      "code": "led_daemmerung.ino"
+    },
+    {
+      "id": 12,
+      "title": "Ampelsteuerung Tag/Nacht",
+      "description": "Ampel wechselt nachts in Blinkbetrieb (gelbes Blinken) basierend auf Lichtsensor.",
+      "difficulty": "Fortgeschritten",
+      "category": "Sensoren",
+      "peripherals": ["LED 3x", "Widerstand 220Ω 3x", "LDR", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [10, 11, 12],
+        "analog": ["A0"]
+      },
+      "code": "ampel_tag_nacht.ino"
+    },
+    {
+      "id": 13,
+      "title": "Lüftersteuerung mit Temperaturfühler",
+      "description": "Relais schaltet bei Überschreiten einer Temperaturgrenze ein.",
+      "difficulty": "Fortgeschritten",
+      "category": "Sensoren",
+      "peripherals": ["NTC/TMP36", "Relais-Modul", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [7],
+        "analog": ["A0"]
+      },
+      "code": "luefter_temperatur.ino"
+    },
+    {
+      "id": 14,
+      "title": "SOS Blinken mit FOR-Schleife",
+      "description": "LED blinkt das Morse-Signal SOS (... --- ...) in einer Endlosschleife.",
+      "difficulty": "Anfänger",
+      "category": "LED",
+      "peripherals": ["LED", "Widerstand 220Ω"],
+      "pins": {
+        "digital": [13],
+        "analog": []
+      },
+      "code": "sos_blinken.ino"
+    },
+    {
+      "id": 15,
+      "title": "Fester Text auf LCD",
+      "description": "Ein 16x2 LCD Display zeigt einen festen Text an.",
+      "difficulty": "Fortgeschritten",
+      "category": "Display",
+      "peripherals": ["LCD 16x2", "Potentiometer 10kΩ"],
+      "pins": {
+        "digital": [4, 5, 6, 7, 8, 9],
+        "analog": []
+      },
+      "code": "lcd_text.ino"
+    },
+    {
+      "id": 16,
+      "title": "Messwert auf LCD anzeigen",
+      "description": "Analoger Sensorwert (z.B. Temperatur) wird live auf LCD angezeigt.",
+      "difficulty": "Fortgeschritten",
+      "category": "Display",
+      "peripherals": ["LCD 16x2", "Potentiometer 10kΩ", "Analoger Sensor"],
+      "pins": {
+        "digital": [4, 5, 6, 7, 8, 9],
+        "analog": ["A0"]
+      },
+      "code": "lcd_messwert.ino"
+    },
+    {
+      "id": 17,
+      "title": "Joystick auf seriellem Monitor",
+      "description": "X/Y-Achsen und Button des Joysticks werden im Serial Monitor ausgegeben.",
+      "difficulty": "Anfänger",
+      "category": "Sensoren",
+      "peripherals": ["Joystick-Modul"],
+      "pins": {
+        "digital": [2],
+        "analog": ["A0", "A1"]
+      },
+      "code": "joystick_serial.ino"
+    },
+    {
+      "id": 18,
+      "title": "Servomotor mit Joystick steuern",
+      "description": "Joystick-Position steuert Winkel eines Servomotors.",
+      "difficulty": "Fortgeschritten",
+      "category": "Motoren",
+      "peripherals": ["Joystick-Modul", "Servomotor"],
+      "pins": {
+        "digital": [9],
+        "analog": ["A0"]
+      },
+      "code": "servo_joystick.ino"
+    },
+    {
+      "id": 19,
+      "title": "Stepper-Motor mit Tastern steuern",
+      "description": "Zwei Taster drehen Schrittmotor links oder rechts.",
+      "difficulty": "Fortgeschritten",
+      "category": "Motoren",
+      "peripherals": ["Stepper-Motor", "Stepper-Treiber", "Taster 2x"],
+      "pins": {
+        "digital": [2, 3, 8, 9, 10, 11],
+        "analog": []
+      },
+      "code": "stepper_taster.ino"
+    },
+    {
+      "id": 20,
+      "title": "LED-Zustandssteuerung mit 2 Tastern",
+      "description": "Kein Taster = LED an, 1 Taster = LED blinkt, 2 Taster = LED aus.",
+      "difficulty": "Anfänger",
+      "category": "Taster",
+      "peripherals": ["LED", "Widerstand 220Ω", "Taster 2x", "Widerstand 10kΩ 2x"],
+      "pins": {
+        "digital": [2, 3, 13],
+        "analog": []
+      },
+      "code": "led_zwei_taster_zustand.ino"
+    },
+    {
+      "id": 21,
+      "title": "RGB-LED Farbwechsel",
+      "description": "RGB-LED wechselt automatisch durch alle Farben des Regenbogens.",
+      "difficulty": "Anfänger",
+      "category": "LED",
+      "peripherals": ["RGB-LED (gemeinsame Kathode)", "Widerstand 220Ω 3x"],
+      "pins": {
+        "digital": [9, 10, 11],
+        "analog": []
+      },
+      "code": "rgb_farbwechsel.ino"
+    },
+    {
+      "id": 22,
+      "title": "RGB-LED mit 3 Tastern",
+      "description": "Jeder Taster schaltet eine Farbe der RGB-LED ein/aus.",
+      "difficulty": "Anfänger",
+      "category": "Taster",
+      "peripherals": ["RGB-LED", "Widerstand 220Ω 3x", "Taster 3x", "Widerstand 10kΩ 3x"],
+      "pins": {
+        "digital": [2, 3, 4, 9, 10, 11],
+        "analog": []
+      },
+      "code": "rgb_drei_taster.ino"
+    },
+    {
+      "id": 23,
+      "title": "Helligkeitssensor auf Serial Monitor",
+      "description": "LDR-Werte werden kontinuierlich im Serial Monitor ausgegeben.",
+      "difficulty": "Anfänger",
+      "category": "Sensoren",
+      "peripherals": ["LDR", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [],
+        "analog": ["A0"]
+      },
+      "code": "ldr_serial.ino"
+    },
+    {
+      "id": 24,
+      "title": "Temperaturanzeige Serial Monitor",
+      "description": "Temperatur wird mit TMP36 gemessen und in Celsius ausgegeben.",
+      "difficulty": "Anfänger",
+      "category": "Sensoren",
+      "peripherals": ["TMP36 Temperatursensor"],
+      "pins": {
+        "digital": [],
+        "analog": ["A0"]
+      },
+      "code": "temperatur_serial.ino"
+    },
+    {
+      "id": 25,
+      "title": "Piezo-Summer Melodie",
+      "description": "Ein Piezo-Summer spielt eine einfache Melodie ab.",
+      "difficulty": "Anfänger",
+      "category": "LED",
+      "peripherals": ["Piezo-Summer"],
+      "pins": {
+        "digital": [8],
+        "analog": []
+      },
+      "code": "piezo_melodie.ino"
+    },
+    {
+      "id": 26,
+      "title": "Alarmanlage mit Bewegungsmelder",
+      "description": "PIR-Sensor erkennt Bewegung und aktiviert LED + Summer.",
+      "difficulty": "Fortgeschritten",
+      "category": "Sensoren",
+      "peripherals": ["PIR-Sensor", "LED", "Piezo-Summer", "Widerstand 220Ω"],
+      "pins": {
+        "digital": [2, 8, 13],
+        "analog": []
+      },
+      "code": "alarm_pir.ino"
+    },
+    {
+      "id": 27,
+      "title": "Entfernungsmessung mit Ultraschall",
+      "description": "HC-SR04 misst Entfernung und gibt sie im Serial Monitor aus.",
+      "difficulty": "Fortgeschritten",
+      "category": "Sensoren",
+      "peripherals": ["HC-SR04 Ultraschallsensor"],
+      "pins": {
+        "digital": [9, 10],
+        "analog": []
+      },
+      "code": "ultraschall_entfernung.ino"
+    },
+    {
+      "id": 28,
+      "title": "Einparkhilfe mit LEDs",
+      "description": "Je näher ein Objekt, desto mehr LEDs leuchten (Ultraschall).",
+      "difficulty": "Fortgeschritten",
+      "category": "Sensoren",
+      "peripherals": ["HC-SR04", "LED 5x", "Widerstand 220Ω 5x"],
+      "pins": {
+        "digital": [4, 5, 6, 7, 8, 9, 10],
+        "analog": []
+      },
+      "code": "einparkhilfe.ino"
+    },
+    {
+      "id": 29,
+      "title": "Servo auf bestimmte Winkel",
+      "description": "Servo fährt nacheinander verschiedene vorprogrammierte Winkel an.",
+      "difficulty": "Anfänger",
+      "category": "Motoren",
+      "peripherals": ["Servomotor"],
+      "pins": {
+        "digital": [9],
+        "analog": []
+      },
+      "code": "servo_winkel.ino"
+    },
+    {
+      "id": 30,
+      "title": "Servo mit Potentiometer",
+      "description": "Potentiometer-Position wird direkt auf Servo-Winkel abgebildet.",
+      "difficulty": "Anfänger",
+      "category": "Motoren",
+      "peripherals": ["Servomotor", "Potentiometer 10kΩ"],
+      "pins": {
+        "digital": [9],
+        "analog": ["A0"]
+      },
+      "code": "servo_poti.ino"
+    },
+    {
+      "id": 31,
+      "title": "Reaktionsspiel",
+      "description": "LED leuchtet zufällig auf, Spieler muss schnell Taster drücken. Zeit wird gemessen.",
+      "difficulty": "Fortgeschritten",
+      "category": "Taster",
+      "peripherals": ["LED", "Taster", "Widerstand 220Ω", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [2, 13],
+        "analog": []
+      },
+      "code": "reaktionsspiel.ino"
+    },
+    {
+      "id": 32,
+      "title": "Würfelsimulation mit 7 LEDs",
+      "description": "Taster drücken würfelt eine Zahl, 7 LEDs zeigen das Würfelbild.",
+      "difficulty": "Fortgeschritten",
+      "category": "Taster",
+      "peripherals": ["LED 7x", "Taster", "Widerstand 220Ω 7x", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [2, 3, 4, 5, 6, 7, 8, 9],
+        "analog": []
+      },
+      "code": "wuerfel_led.ino"
+    },
+    {
+      "id": 33,
+      "title": "Binärzähler mit 4 LEDs",
+      "description": "4 LEDs zählen binär von 0 bis 15 hoch.",
+      "difficulty": "Anfänger",
+      "category": "LED",
+      "peripherals": ["LED 4x", "Widerstand 220Ω 4x"],
+      "pins": {
+        "digital": [10, 11, 12, 13],
+        "analog": []
+      },
+      "code": "binaerzaehler.ino"
+    },
+    {
+      "id": 34,
+      "title": "Zähler mit Taster und LEDs",
+      "description": "Jeder Tasterdruck erhöht den Zähler, LEDs zeigen binär den Wert.",
+      "difficulty": "Anfänger",
+      "category": "Taster",
+      "peripherals": ["LED 4x", "Taster", "Widerstand 220Ω 4x", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [2, 10, 11, 12, 13],
+        "analog": []
+      },
+      "code": "zaehler_taster.ino"
+    },
+    {
+      "id": 35,
+      "title": "Helligkeitsgesteuertes Lauflicht",
+      "description": "Geschwindigkeit des Lauflichts hängt von Umgebungshelligkeit ab.",
+      "difficulty": "Fortgeschritten",
+      "category": "Sensoren",
+      "peripherals": ["LED 5x", "LDR", "Widerstand 220Ω 5x", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [8, 9, 10, 11, 12],
+        "analog": ["A0"]
+      },
+      "code": "lauflicht_ldr.ino"
+    },
+    {
+      "id": 36,
+      "title": "Temperaturwarnung mit LED",
+      "description": "LED wechselt Farbe je nach Temperaturbereich (kalt/normal/warm).",
+      "difficulty": "Fortgeschritten",
+      "category": "Sensoren",
+      "peripherals": ["RGB-LED", "TMP36", "Widerstand 220Ω 3x"],
+      "pins": {
+        "digital": [9, 10, 11],
+        "analog": ["A0"]
+      },
+      "code": "temperatur_rgb.ino"
+    },
+    {
+      "id": 37,
+      "title": "Taster-Kombination als Schloss",
+      "description": "Nur richtige Tasterkombination (z.B. 1-2-1) schaltet LED frei.",
+      "difficulty": "Fortgeschritten",
+      "category": "Taster",
+      "peripherals": ["LED 2x", "Taster 2x", "Widerstand 220Ω 2x", "Widerstand 10kΩ 2x"],
+      "pins": {
+        "digital": [2, 3, 12, 13],
+        "analog": []
+      },
+      "code": "tasterschloss.ino"
+    },
+    {
+      "id": 38,
+      "title": "Countdown mit LEDs",
+      "description": "5 LEDs zählen von 5 nach 0 runter, dann blinken alle.",
+      "difficulty": "Anfänger",
+      "category": "LED",
+      "peripherals": ["LED 5x", "Widerstand 220Ω 5x"],
+      "pins": {
+        "digital": [8, 9, 10, 11, 12],
+        "analog": []
+      },
+      "code": "countdown_led.ino"
+    },
+    {
+      "id": 39,
+      "title": "Fade-Effekt mit einer LED",
+      "description": "LED wird langsam heller und dann wieder dunkler (PWM).",
+      "difficulty": "Anfänger",
+      "category": "LED",
+      "peripherals": ["LED", "Widerstand 220Ω"],
+      "pins": {
+        "digital": [9],
+        "analog": []
+      },
+      "code": "led_fade.ino"
+    },
+    {
+      "id": 40,
+      "title": "Stoppuhr mit Taster",
+      "description": "Taster startet/stoppt Zeitmessung, Ergebnis im Serial Monitor.",
+      "difficulty": "Fortgeschritten",
+      "category": "Taster",
+      "peripherals": ["Taster", "Widerstand 10kΩ"],
+      "pins": {
+        "digital": [2],
+        "analog": []
+      },
+      "code": "stoppuhr.ino"
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arduino Wiki - Zeasy Software</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <img src="/logo.svg" alt="Zeasy Logo" class="logo">
+      <h1>Arduino Wiki</h1>
+    </div>
+    <nav class="nav">
+      <button class="nav-btn active" data-view="wiki">Wiki</button>
+      <button class="nav-btn" data-view="generator">Code-Generator</button>
+    </nav>
+  </header>
+
+  <main class="main">
+    <!-- Wiki View -->
+    <section id="wiki-view" class="view active">
+      <div class="sidebar">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Projekt suchen...">
+        </div>
+
+        <div class="filter-group">
+          <h3>Kategorie</h3>
+          <div class="filter-buttons" id="category-filters">
+            <button class="filter-btn active" data-category="all">Alle</button>
+            <button class="filter-btn" data-category="LED">LED</button>
+            <button class="filter-btn" data-category="Taster">Taster</button>
+            <button class="filter-btn" data-category="Sensoren">Sensoren</button>
+            <button class="filter-btn" data-category="Display">Display</button>
+            <button class="filter-btn" data-category="Motoren">Motoren</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h3>Schwierigkeit</h3>
+          <div class="filter-buttons" id="difficulty-filters">
+            <button class="filter-btn active" data-difficulty="all">Alle</button>
+            <button class="filter-btn" data-difficulty="Anfänger">Anfänger</button>
+            <button class="filter-btn" data-difficulty="Fortgeschritten">Fortgeschritten</button>
+          </div>
+        </div>
+
+        <div class="project-list" id="project-list">
+          <!-- Projekte werden hier dynamisch eingefügt -->
+        </div>
+      </div>
+
+      <div class="content">
+        <div id="project-detail" class="project-detail">
+          <div class="welcome-message">
+            <h2>Willkommen im Arduino Wiki</h2>
+            <p>Wähle ein Projekt aus der Liste, um den Code und Details anzuzeigen.</p>
+            <div class="stats">
+              <div class="stat">
+                <span class="stat-number" id="total-projects">40</span>
+                <span class="stat-label">Projekte</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">6</span>
+                <span class="stat-label">Kategorien</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Generator View -->
+    <section id="generator-view" class="view">
+      <div class="generator-sidebar">
+        <h2>Komponenten</h2>
+
+        <div class="component-group">
+          <h3>Ausgabe</h3>
+          <div class="component-list" id="output-components">
+            <label class="component-item">
+              <input type="checkbox" data-component="led" data-type="output">
+              <span>LED</span>
+              <input type="number" class="component-count" min="1" max="7" value="1">
+            </label>
+            <label class="component-item">
+              <input type="checkbox" data-component="rgb-led" data-type="output">
+              <span>RGB-LED</span>
+            </label>
+            <label class="component-item">
+              <input type="checkbox" data-component="piezo" data-type="output">
+              <span>Piezo-Summer</span>
+            </label>
+            <label class="component-item">
+              <input type="checkbox" data-component="relay" data-type="output">
+              <span>Relais</span>
+            </label>
+            <label class="component-item">
+              <input type="checkbox" data-component="servo" data-type="output">
+              <span>Servomotor</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="component-group">
+          <h3>Eingabe</h3>
+          <div class="component-list" id="input-components">
+            <label class="component-item">
+              <input type="checkbox" data-component="button" data-type="input">
+              <span>Taster</span>
+              <input type="number" class="component-count" min="1" max="3" value="1">
+            </label>
+            <label class="component-item">
+              <input type="checkbox" data-component="potentiometer" data-type="input">
+              <span>Potentiometer</span>
+            </label>
+            <label class="component-item">
+              <input type="checkbox" data-component="ldr" data-type="input">
+              <span>Lichtsensor (LDR)</span>
+            </label>
+            <label class="component-item">
+              <input type="checkbox" data-component="tmp36" data-type="input">
+              <span>Temperatursensor</span>
+            </label>
+            <label class="component-item">
+              <input type="checkbox" data-component="pir" data-type="input">
+              <span>Bewegungsmelder</span>
+            </label>
+            <label class="component-item">
+              <input type="checkbox" data-component="ultrasonic" data-type="input">
+              <span>Ultraschall</span>
+            </label>
+            <label class="component-item">
+              <input type="checkbox" data-component="joystick" data-type="input">
+              <span>Joystick</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="generator-main">
+        <div class="rules-section">
+          <h2>Regeln</h2>
+          <p class="rules-hint">Definiere Regeln im Format: WENN [Bedingung] DANN [Aktion]</p>
+
+          <div id="rules-list" class="rules-list">
+            <!-- Regeln werden hier dynamisch eingefügt -->
+          </div>
+
+          <button id="add-rule-btn" class="btn btn-secondary">+ Regel hinzufügen</button>
+        </div>
+
+        <div class="generator-actions">
+          <button id="generate-btn" class="btn btn-primary">Code generieren</button>
+          <button id="open-ide-btn" class="btn btn-secondary" disabled>In Arduino IDE öffnen</button>
+          <button id="reset-btn" class="btn btn-danger">Reset</button>
+        </div>
+
+        <div class="code-preview">
+          <h3>Generierter Code</h3>
+          <pre id="generated-code"><code>// Wähle Komponenten und füge Regeln hinzu,
+// um Arduino-Code zu generieren.</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Zeasy Software</span>
+    <span class="version">v1.0.0</span>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
