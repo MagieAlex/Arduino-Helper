@@ -109,14 +109,54 @@ function setupEventListeners() {
     }
   });
 
-  // Component checkboxes - update rules when changed
-  document.querySelectorAll('.component-item input[type="checkbox"]').forEach(cb => {
-    cb.addEventListener('change', onComponentsChanged);
+  // Component cards - toggle on click
+  document.querySelectorAll('.component-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Don't toggle if clicking stepper buttons
+      if (e.target.closest('.component-stepper')) return;
+
+      const checkbox = card.querySelector('input[type="checkbox"]');
+      checkbox.checked = !checkbox.checked;
+      card.classList.toggle('selected', checkbox.checked);
+      onComponentsChanged();
+    });
   });
 
-  // Component count inputs
-  document.querySelectorAll('.component-count').forEach(input => {
-    input.addEventListener('change', onComponentsChanged);
+  // Stepper buttons
+  document.querySelectorAll('.component-stepper').forEach(stepper => {
+    const min = parseInt(stepper.dataset.min) || 1;
+    const max = parseInt(stepper.dataset.max) || 7;
+    const valueEl = stepper.querySelector('.stepper-value');
+    const minusBtn = stepper.querySelector('.stepper-minus');
+    const plusBtn = stepper.querySelector('.stepper-plus');
+
+    const updateButtons = () => {
+      const val = parseInt(valueEl.textContent);
+      minusBtn.classList.toggle('disabled', val <= min);
+      plusBtn.classList.toggle('disabled', val >= max);
+    };
+
+    minusBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      let val = parseInt(valueEl.textContent);
+      if (val > min) {
+        valueEl.textContent = val - 1;
+        updateButtons();
+        onComponentsChanged();
+      }
+    });
+
+    plusBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      let val = parseInt(valueEl.textContent);
+      if (val < max) {
+        valueEl.textContent = val + 1;
+        updateButtons();
+        onComponentsChanged();
+      }
+    });
+
+    updateButtons();
   });
 
   // Generator - Add rule
@@ -130,6 +170,32 @@ function setupEventListeners() {
 
   // Generator - Reset
   resetBtn.addEventListener('click', resetGenerator);
+
+  // Generator - Copy code
+  document.getElementById('copy-generated-btn').addEventListener('click', () => {
+    if (window.generatedCode) {
+      copyToClipboard(window.generatedCode, document.getElementById('copy-generated-btn'));
+    }
+  });
+}
+
+// Copy to clipboard helper
+async function copyToClipboard(text, button) {
+  try {
+    await navigator.clipboard.writeText(text);
+
+    // Visual feedback
+    const originalText = button.querySelector('span').textContent;
+    button.classList.add('copied');
+    button.querySelector('span').textContent = 'Kopiert!';
+
+    setTimeout(() => {
+      button.classList.remove('copied');
+      button.querySelector('span').textContent = originalText;
+    }, 2000);
+  } catch (err) {
+    showToast('error', 'Fehler', 'Kopieren fehlgeschlagen');
+  }
 }
 
 // Switch view
@@ -221,13 +287,26 @@ async function selectProject(id) {
     <div class="code-section">
       <div class="code-header">
         <h3>${selectedProject.code}</h3>
-        <button class="btn btn-primary" id="open-solution-btn">In Arduino IDE öffnen</button>
+        <div class="code-header-actions">
+          <button class="btn-copy" id="copy-solution-btn" title="Code kopieren">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span>Kopieren</span>
+          </button>
+          <button class="btn btn-primary" id="open-solution-btn">In Arduino IDE öffnen</button>
+        </div>
       </div>
       <div class="code-content">
         <pre>${escapeHtml(code)}</pre>
       </div>
     </div>
   `;
+
+  document.getElementById('copy-solution-btn').addEventListener('click', () => {
+    copyToClipboard(code, document.getElementById('copy-solution-btn'));
+  });
 
   document.getElementById('open-solution-btn').addEventListener('click', async () => {
     try {
@@ -242,14 +321,21 @@ async function selectProject(id) {
 
 // Reset generator to initial state
 function resetGenerator() {
-  // Clear all checkboxes
-  document.querySelectorAll('.component-item input[type="checkbox"]').forEach(cb => {
-    cb.checked = false;
+  // Clear all cards and checkboxes
+  document.querySelectorAll('.component-card').forEach(card => {
+    card.classList.remove('selected');
+    const cb = card.querySelector('input[type="checkbox"]');
+    if (cb) cb.checked = false;
   });
 
-  // Reset all counts to 1
-  document.querySelectorAll('.component-count').forEach(input => {
-    input.value = 1;
+  // Reset all steppers to 1
+  document.querySelectorAll('.component-stepper').forEach(stepper => {
+    const valueEl = stepper.querySelector('.stepper-value');
+    const minusBtn = stepper.querySelector('.stepper-minus');
+    const plusBtn = stepper.querySelector('.stepper-plus');
+    if (valueEl) valueEl.textContent = '1';
+    if (minusBtn) minusBtn.classList.add('disabled');
+    if (plusBtn) plusBtn.classList.remove('disabled');
   });
 
   // Clear rules
@@ -270,11 +356,11 @@ function resetGenerator() {
 function getSelectedComponents() {
   const components = { outputs: [], inputs: [] };
 
-  document.querySelectorAll('.component-item input[type="checkbox"]:checked').forEach(cb => {
-    const component = cb.dataset.component;
-    const type = cb.dataset.type;
-    const countInput = cb.parentElement.querySelector('.component-count');
-    const count = countInput ? parseInt(countInput.value) || 1 : 1;
+  document.querySelectorAll('.component-card.selected').forEach(card => {
+    const component = card.dataset.component;
+    const type = card.dataset.type;
+    const stepperValue = card.querySelector('.stepper-value');
+    const count = stepperValue ? parseInt(stepperValue.textContent) || 1 : 1;
 
     const item = { component, count };
     if (type === 'output') {

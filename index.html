@@ -81,62 +81,172 @@
         <div class="component-group">
           <h3>Ausgabe</h3>
           <div class="component-list" id="output-components">
-            <label class="component-item">
-              <input type="checkbox" data-component="led" data-type="output">
-              <span>LED</span>
-              <input type="number" class="component-count" min="1" max="7" value="1">
-            </label>
-            <label class="component-item">
-              <input type="checkbox" data-component="rgb-led" data-type="output">
-              <span>RGB-LED</span>
-            </label>
-            <label class="component-item">
-              <input type="checkbox" data-component="piezo" data-type="output">
-              <span>Piezo-Summer</span>
-            </label>
-            <label class="component-item">
-              <input type="checkbox" data-component="relay" data-type="output">
-              <span>Relais</span>
-            </label>
-            <label class="component-item">
-              <input type="checkbox" data-component="servo" data-type="output">
-              <span>Servomotor</span>
-            </label>
+            <div class="component-card" data-component="led" data-type="output">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18h6M10 22h4M12 2v1M12 5a5 5 0 0 1 5 5c0 2.76-2.5 5-5 5s-5-2.24-5-5a5 5 0 0 1 5-5z"/>
+                    <path d="M9 15v3M15 15v3"/>
+                  </svg>
+                </div>
+                <span class="component-name">LED</span>
+              </div>
+              <div class="component-stepper" data-min="1" data-max="7">
+                <button class="stepper-btn stepper-minus">−</button>
+                <span class="stepper-value">1</span>
+                <button class="stepper-btn stepper-plus">+</button>
+              </div>
+            </div>
+            <div class="component-card" data-component="rgb-led" data-type="output">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="10" r="6"/>
+                    <path d="M12 16v4M9 22h6"/>
+                    <circle cx="12" cy="10" r="2"/>
+                  </svg>
+                </div>
+                <span class="component-name">RGB-LED</span>
+              </div>
+            </div>
+            <div class="component-card" data-component="piezo" data-type="output">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                  </svg>
+                </div>
+                <span class="component-name">Piezo</span>
+              </div>
+            </div>
+            <div class="component-card" data-component="relay" data-type="output">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="6" width="18" height="12" rx="2"/>
+                    <path d="M7 10v4M12 10v4M17 10v4"/>
+                    <circle cx="7" cy="12" r="1" fill="currentColor"/>
+                  </svg>
+                </div>
+                <span class="component-name">Relais</span>
+              </div>
+            </div>
+            <div class="component-card" data-component="servo" data-type="output">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="8" width="16" height="10" rx="2"/>
+                    <circle cx="12" cy="13" r="3"/>
+                    <path d="M12 10V6M10 4h4"/>
+                  </svg>
+                </div>
+                <span class="component-name">Servo</span>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="component-group">
           <h3>Eingabe</h3>
           <div class="component-list" id="input-components">
-            <label class="component-item">
-              <input type="checkbox" data-component="button" data-type="input">
-              <span>Taster</span>
-              <input type="number" class="component-count" min="1" max="3" value="1">
-            </label>
-            <label class="component-item">
-              <input type="checkbox" data-component="potentiometer" data-type="input">
-              <span>Potentiometer</span>
-            </label>
-            <label class="component-item">
-              <input type="checkbox" data-component="ldr" data-type="input">
-              <span>Lichtsensor (LDR)</span>
-            </label>
-            <label class="component-item">
-              <input type="checkbox" data-component="tmp36" data-type="input">
-              <span>Temperatursensor</span>
-            </label>
-            <label class="component-item">
-              <input type="checkbox" data-component="pir" data-type="input">
-              <span>Bewegungsmelder</span>
-            </label>
-            <label class="component-item">
-              <input type="checkbox" data-component="ultrasonic" data-type="input">
-              <span>Ultraschall</span>
-            </label>
-            <label class="component-item">
-              <input type="checkbox" data-component="joystick" data-type="input">
-              <span>Joystick</span>
-            </label>
+            <div class="component-card" data-component="button" data-type="input">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="8"/>
+                    <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                  </svg>
+                </div>
+                <span class="component-name">Taster</span>
+              </div>
+              <div class="component-stepper" data-min="1" data-max="3">
+                <button class="stepper-btn stepper-minus">−</button>
+                <span class="stepper-value">1</span>
+                <button class="stepper-btn stepper-plus">+</button>
+              </div>
+            </div>
+            <div class="component-card" data-component="potentiometer" data-type="input">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="8"/>
+                    <path d="M12 8v4l3 2"/>
+                    <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                  </svg>
+                </div>
+                <span class="component-name">Poti</span>
+              </div>
+            </div>
+            <div class="component-card" data-component="ldr" data-type="input">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                  </svg>
+                </div>
+                <span class="component-name">Licht</span>
+              </div>
+            </div>
+            <div class="component-card" data-component="tmp36" data-type="input">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
+                    <circle cx="11.5" cy="17.5" r="2" fill="currentColor"/>
+                  </svg>
+                </div>
+                <span class="component-name">Temp</span>
+              </div>
+            </div>
+            <div class="component-card" data-component="pir" data-type="input">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </div>
+                <span class="component-name">PIR</span>
+              </div>
+            </div>
+            <div class="component-card" data-component="ultrasonic" data-type="input">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="8" width="6" height="8" rx="1"/>
+                    <rect x="16" y="8" width="6" height="8" rx="1"/>
+                    <path d="M8 10c2-1 6-1 8 0M8 14c2 1 6 1 8 0M8 12h8" stroke-dasharray="2 2"/>
+                  </svg>
+                </div>
+                <span class="component-name">Ultraschall</span>
+              </div>
+            </div>
+            <div class="component-card" data-component="joystick" data-type="input">
+              <input type="checkbox">
+              <div class="component-content">
+                <div class="component-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="17" r="5"/>
+                    <circle cx="12" cy="17" r="2" fill="currentColor"/>
+                    <path d="M12 12V7M9 9l3-4 3 4"/>
+                  </svg>
+                </div>
+                <span class="component-name">Joystick</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -160,7 +270,16 @@
         </div>
 
         <div class="code-preview">
-          <h3>Generierter Code</h3>
+          <div class="code-preview-header">
+            <h3>Generierter Code</h3>
+            <button class="btn-copy" id="copy-generated-btn" title="Code kopieren">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span>Kopieren</span>
+            </button>
+          </div>
           <pre id="generated-code"><code>// Wähle Komponenten und füge Regeln hinzu,
 // um Arduino-Code zu generieren.</code></pre>
         </div>
