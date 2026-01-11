@@ -1,5 +1,6 @@
 use std::process::Command;
 use tauri::Manager;
+use tauri::image::Image;
 
 #[tauri::command]
 fn get_app_dir(app: tauri::AppHandle) -> Result<String, String> {
@@ -47,13 +48,15 @@ fn save_generated_code(app: tauri::AppHandle, filename: String, code: String) ->
 fn open_in_arduino_ide(app: tauri::AppHandle, file_path: String) -> Result<(), String> {
     let resource_path = app.path().resource_dir()
         .map_err(|e| e.to_string())?;
-    let ide_path = resource_path.join("arduino-ide").join("arduino.exe");
+    let ide_dir = resource_path.join("arduino-ide");
+    let ide_path = ide_dir.join("arduino.exe");
 
     if !ide_path.exists() {
         return Err("Arduino IDE nicht gefunden. Bitte stellen Sie sicher, dass die portable Arduino IDE im Ordner 'arduino-ide' liegt.".to_string());
     }
 
     Command::new(&ide_path)
+        .current_dir(&ide_dir)
         .arg(&file_path)
         .spawn()
         .map_err(|e| format!("Fehler beim Starten der Arduino IDE: {}", e))?;
@@ -66,7 +69,8 @@ fn open_solution_in_ide(app: tauri::AppHandle, filename: String) -> Result<(), S
     let resource_path = app.path().resource_dir()
         .map_err(|e| e.to_string())?;
     let solution_path = resource_path.join("solutions").join(&filename);
-    let ide_path = resource_path.join("arduino-ide").join("arduino.exe");
+    let ide_dir = resource_path.join("arduino-ide");
+    let ide_path = ide_dir.join("arduino.exe");
 
     if !ide_path.exists() {
         return Err("Arduino IDE nicht gefunden.".to_string());
@@ -77,6 +81,7 @@ fn open_solution_in_ide(app: tauri::AppHandle, filename: String) -> Result<(), S
     }
 
     Command::new(&ide_path)
+        .current_dir(&ide_dir)
         .arg(&solution_path)
         .spawn()
         .map_err(|e| format!("Fehler beim Starten der Arduino IDE: {}", e))?;
@@ -90,6 +95,14 @@ pub fn run() {
         .plugin(tauri_plugin_shell::init())
         .plugin(tauri_plugin_fs::init())
         .setup(|app| {
+            // Set window icon
+            if let Some(window) = app.get_webview_window("main") {
+                let icon_bytes = include_bytes!("../icons/icon.png");
+                if let Ok(icon) = Image::from_bytes(icon_bytes) {
+                    let _ = window.set_icon(icon);
+                }
+            }
+
             if cfg!(debug_assertions) {
                 app.handle().plugin(
                     tauri_plugin_log::Builder::default()

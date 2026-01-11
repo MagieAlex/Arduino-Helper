@@ -57,13 +57,21 @@ body {
   height: 36px;
 }
 
-.header h1 {
-  font-size: 1.25rem;
+.logo-horizontal {
+  height: 32px;
+  width: auto;
+}
+
+.header-divider {
+  color: var(--border);
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
+.header-title {
+  font-size: 1.1rem;
   font-weight: 600;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text);
 }
 
 .nav {
@@ -756,6 +764,89 @@ body {
   border-top: 1px solid var(--border);
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+/* Toast Notifications */
+.toast {
+  position: fixed;
+  bottom: 4rem;
+  right: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.9rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: slideIn 0.3s ease;
+  max-width: 400px;
+}
+
+.toast.error {
+  border-color: var(--error);
+  background: linear-gradient(135deg, rgba(255, 71, 87, 0.15) 0%, var(--bg-card) 100%);
+}
+
+.toast.success {
+  border-color: var(--success);
+  background: linear-gradient(135deg, rgba(0, 214, 143, 0.15) 0%, var(--bg-card) 100%);
+}
+
+.toast.warning {
+  border-color: var(--warning);
+  background: linear-gradient(135deg, rgba(255, 170, 0, 0.15) 0%, var(--bg-card) 100%);
+}
+
+.toast-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toast.error .toast-title {
+  color: var(--error);
+}
+
+.toast.success .toast-title {
+  color: var(--success);
+}
+
+.toast.warning .toast-title {
+  color: var(--warning);
+}
+
+.toast-message {
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.toast.hiding {
+  animation: slideOut 0.3s ease forwards;
 }
 
 /* Scrollbar */

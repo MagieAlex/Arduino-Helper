@@ -1,6 +1,26 @@
 // Arduino Wiki - Main JavaScript
 import { invoke } from '@tauri-apps/api/core';
 
+// Toast Notification System
+function showToast(type, title, message, duration = 4000) {
+  // Remove existing toasts
+  document.querySelectorAll('.toast').forEach(t => t.remove());
+
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `
+    <div class="toast-title">${title}</div>
+    <div class="toast-message">${message}</div>
+  `;
+
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add('hiding');
+    setTimeout(() => toast.remove(), 300);
+  }, duration);
+}
+
 // State
 let projects = [];
 let selectedProject = null;
@@ -213,7 +233,7 @@ async function selectProject(id) {
     try {
       await invoke('open_solution_in_ide', { filename: selectedProject.code });
     } catch (e) {
-      alert('Fehler: ' + e);
+      showToast('error', 'Fehler', 'Arduino IDE konnte nicht geöffnet werden: ' + e);
     }
   });
 }
@@ -410,7 +430,7 @@ function addRule() {
   const actionOptions = getActionOptions();
 
   if (actionOptions.length === 0) {
-    alert('Bitte wähle mindestens eine Ausgabe-Komponente aus.');
+    showToast('warning', 'Keine Komponenten', 'Bitte wähle mindestens eine Ausgabe-Komponente aus.');
     return;
   }
 
@@ -704,7 +724,7 @@ function generateCode() {
     : rules.filter(r => r.conditions.some(c => c.value) && hasValidActions(r));
 
   if (components.outputs.length === 0) {
-    alert('Bitte wähle mindestens eine Ausgabe-Komponente aus.');
+    showToast('warning', 'Keine Komponenten', 'Bitte wähle mindestens eine Ausgabe-Komponente aus, um Code zu generieren.');
     return;
   }
 
@@ -731,7 +751,7 @@ function generateCode() {
 
     for (const [ledNum, conflict] of Object.entries(ledConflicts)) {
       if (conflict.toggle && conflict.other) {
-        alert(`Konflikt in Regel: LED${ledNum} kann nicht gleichzeitig "umschalten" und "an/aus/blinken" haben. Bitte nur eine Option pro LED wählen.`);
+        showToast('error', 'Konflikt erkannt', `LED${ledNum} kann nicht gleichzeitig "umschalten" und "an/aus/blinken" haben. Bitte nur eine Option pro LED wählen.`);
         return;
       }
     }
@@ -1174,7 +1194,7 @@ async function openInArduinoIDE() {
     });
     await invoke('open_in_arduino_ide', { filePath: generatedFilePath });
   } catch (e) {
-    alert('Fehler beim Öffnen der Arduino IDE: ' + e);
+    showToast('error', 'Fehler', 'Arduino IDE konnte nicht geöffnet werden: ' + e);
   }
 }
 
