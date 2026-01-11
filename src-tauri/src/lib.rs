@@ -47,7 +47,7 @@ fn save_generated_code(app: tauri::AppHandle, filename: String, code: String) ->
 fn open_in_arduino_ide(app: tauri::AppHandle, file_path: String) -> Result<(), String> {
     let resource_path = app.path().resource_dir()
         .map_err(|e| e.to_string())?;
-    let ide_path = resource_path.join("arduino-ide").join("ArduinoPortable.exe");
+    let ide_path = resource_path.join("arduino-ide").join("arduino.exe");
 
     if !ide_path.exists() {
         return Err("Arduino IDE nicht gefunden. Bitte stellen Sie sicher, dass die portable Arduino IDE im Ordner 'arduino-ide' liegt.".to_string());
@@ -66,7 +66,7 @@ fn open_solution_in_ide(app: tauri::AppHandle, filename: String) -> Result<(), S
     let resource_path = app.path().resource_dir()
         .map_err(|e| e.to_string())?;
     let solution_path = resource_path.join("solutions").join(&filename);
-    let ide_path = resource_path.join("arduino-ide").join("ArduinoPortable.exe");
+    let ide_path = resource_path.join("arduino-ide").join("arduino.exe");
 
     if !ide_path.exists() {
         return Err("Arduino IDE nicht gefunden.".to_string());
