@@ -113,15 +113,11 @@ Arduino Helper/
 │
 ├── src-tauri/                   ← Tauri Backend (Rust)
 │
+├── public/                      ← Statische Dateien (werden in dist kopiert)
+│   └── diagram.js               ← Schaltplan-Generator
+│
 └── src/                         ← Frontend
-    ├── index.html
     ├── main.js
-    ├── diagram.js               ← Schaltplan-Generator
-    └── style.css
-    ├── index.html
-    ├── main.js
-    ├── generator.js
-    ├── components.json
     └── style.css
 ```
 

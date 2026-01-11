@@ -1,5 +1,5 @@
 [package]
-name = "arduino-wiki"
+name = "arduino-helper"
 version = "1.0.0"
 description = "Offline-fähiges Arduino-Nachschlagewerk mit Code-Generator"
 authors = ["Zeasy Software"]
