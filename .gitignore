@@ -11,9 +11,6 @@ src-tauri/target/
 # Generated files
 output/
 
-# Arduino IDE (zu groß für Git)
-arduino-ide/
-
 # IDE / Editor
 .vscode/
 .idea/

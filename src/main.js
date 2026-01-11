@@ -1,4 +1,4 @@
-// Arduino Wiki - Main JavaScript
+// Arduino Helper - Main JavaScript
 import { invoke } from '@tauri-apps/api/core';
 
 // Toast Notification System
@@ -177,6 +177,21 @@ function setupEventListeners() {
       copyToClipboard(window.generatedCode, document.getElementById('copy-generated-btn'));
     }
   });
+
+  // Output tabs
+  document.querySelectorAll('.output-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const tabName = tab.dataset.tab;
+
+      // Update tab buttons
+      document.querySelectorAll('.output-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Update panels
+      document.querySelectorAll('.output-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(`panel-${tabName}`).classList.add('active');
+    });
+  });
 }
 
 // Copy to clipboard helper
@@ -319,8 +334,65 @@ async function selectProject(id) {
 
 // ==================== CODE GENERATOR ====================
 
+// Show custom dialog
+function showDialog() {
+  return new Promise((resolve) => {
+    const overlay = document.getElementById('dialog-overlay');
+    const confirmBtn = document.getElementById('dialog-confirm');
+    const cancelBtn = document.getElementById('dialog-cancel');
+
+    overlay.classList.remove('hidden');
+
+    const cleanup = () => {
+      overlay.classList.add('hidden');
+      confirmBtn.removeEventListener('click', onConfirm);
+      cancelBtn.removeEventListener('click', onCancel);
+      overlay.removeEventListener('click', onOverlayClick);
+      document.removeEventListener('keydown', onKeydown);
+    };
+
+    const onConfirm = () => {
+      cleanup();
+      resolve(true);
+    };
+
+    const onCancel = () => {
+      cleanup();
+      resolve(false);
+    };
+
+    const onOverlayClick = (e) => {
+      if (e.target === overlay) {
+        cleanup();
+        resolve(false);
+      }
+    };
+
+    const onKeydown = (e) => {
+      if (e.key === 'Escape') {
+        cleanup();
+        resolve(false);
+      } else if (e.key === 'Enter') {
+        cleanup();
+        resolve(true);
+      }
+    };
+
+    confirmBtn.addEventListener('click', onConfirm);
+    cancelBtn.addEventListener('click', onCancel);
+    overlay.addEventListener('click', onOverlayClick);
+    document.addEventListener('keydown', onKeydown);
+  });
+}
+
 // Reset generator to initial state
-function resetGenerator() {
+async function resetGenerator() {
+  // Show custom confirm dialog
+  const confirmed = await showDialog();
+  if (!confirmed) {
+    return;
+  }
+
   // Clear all cards and checkboxes
   document.querySelectorAll('.component-card').forEach(card => {
     card.classList.remove('selected');
@@ -345,6 +417,18 @@ function resetGenerator() {
   // Reset generated code
   generatedCodeEl.innerHTML = `<code>// Wähle Komponenten und füge Regeln hinzu,
 // um Arduino-Code zu generieren.</code>`;
+
+  // Reset diagram
+  document.getElementById('breadboard-diagram').innerHTML = `
+    <div class="diagram-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="placeholder-icon">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <path d="M3 9h18M9 3v18"/>
+      </svg>
+      <p>Wähle Komponenten aus und klicke "Code generieren"</p>
+      <p class="hint">Der Schaltplan wird automatisch erstellt</p>
+    </div>
+  `;
 
   // Disable IDE button
   openIdeBtn.disabled = true;
@@ -844,7 +928,7 @@ function generateCode() {
   }
 
   let code = `// Generierter Arduino-Code
-// Arduino Wiki - Zeasy Software
+// Arduino Helper - Zeasy Software
 
 `;
 
@@ -1156,6 +1240,13 @@ long measureDistance() {
   generatedCodeEl.innerHTML = `<code>${escapeHtml(code)}</code>`;
   openIdeBtn.disabled = false;
   window.generatedCode = code;
+
+  // Generate breadboard diagram
+  if (window.generateBreadboardDiagram) {
+    const diagramContainer = document.getElementById('breadboard-diagram');
+    const diagramSVG = window.generateBreadboardDiagram(components, pins);
+    diagramContainer.innerHTML = diagramSVG;
+  }
 }
 
 // Generate compound condition from array of conditions with operators

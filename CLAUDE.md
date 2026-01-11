@@ -1,18 +1,23 @@
-# Arduino Wiki - Zeasy Software
+# Arduino Helper - Zeasy Software
 
 ## Projektübersicht
 
-Offline-fähiges Arduino-Wiki als Tauri Desktop-App für Windows. Wird während Klausuren vom USB-Stick verwendet.
+Offline-fähiges Arduino-Nachschlagewerk mit Code-Generator als Tauri Desktop-App für Windows. Wird während Klausuren vom USB-Stick verwendet.
+
+**GitHub:** https://github.com/MagieAlex/Arduino-Helper.git
 
 ## Status
 
 - [x] 40 Projekte in `data/projects.json` definiert
 - [x] 40 Arduino-Lösungen in `solutions/*.ino` erstellt
-- [x] Zeasy Software Logos in Root (`logo.svg`, `logo_text_horizontal.svg`, `logo_text_vertical.svg`)
+- [x] Zeasy Software Logos in Root
 - [x] Portable Arduino IDE in `arduino-ide/`
-- [ ] Tauri App erstellen
-- [ ] Frontend (Vite + Vanilla JS)
-- [ ] Code-Generator implementieren
+- [x] Tauri App erstellt
+- [x] Frontend (Vite + Vanilla JS)
+- [x] Code-Generator implementiert
+- [x] Schaltplan-Generator (Beta)
+- [x] Moderne UI mit Zeasy-Branding
+- [x] README und Installationsanleitung
 
 ## Tech Stack
 
@@ -82,9 +87,10 @@ Beispiel:
 ## Ordnerstruktur
 
 ```
-Arduino Wiki/
+Arduino Helper/
 ├── CLAUDE.md                    ← Diese Datei
 ├── README.md                    ← Benutzer-Dokumentation
+├── INSTALLATION.md              ← Installationsanleitung
 ├── logo.svg                     ← Zeasy Logo (Icon)
 ├── logo_text_horizontal.svg     ← Zeasy Logo mit Text
 ├── logo_text_vertical.svg       ← Zeasy Logo vertikal
@@ -100,11 +106,18 @@ Arduino Wiki/
 ├── output/                      ← Generierte Dateien (zur Laufzeit)
 │
 ├── arduino-ide/                 ← Portable Arduino IDE
-│   └── ArduinoPortable.exe
+│   └── arduino.exe
 │
-├── src-tauri/                   ← Tauri Backend (Rust) [NOCH ERSTELLEN]
+├── docs/                        ← Dokumentation Assets
+│   └── screenshot.png           ← Screenshot für README
 │
-└── src/                         ← Frontend [NOCH ERSTELLEN]
+├── src-tauri/                   ← Tauri Backend (Rust)
+│
+└── src/                         ← Frontend
+    ├── index.html
+    ├── main.js
+    ├── diagram.js               ← Schaltplan-Generator
+    └── style.css
     ├── index.html
     ├── main.js
     ├── generator.js

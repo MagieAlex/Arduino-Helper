@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arduino Wiki - Zeasy Software</title>
+  <title>Arduino Helper - Zeasy Software</title>
   <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <div class="header-left">
       <img src="/logo_text_horizontal.svg" alt="Zeasy Software" class="logo-horizontal">
       <span class="header-divider">|</span>
-      <span class="header-title">Arduino Wiki</span>
+      <span class="header-title">Arduino Helper</span>
     </div>
     <nav class="nav">
       <button class="nav-btn active" data-view="wiki">Wiki</button>
@@ -56,17 +56,101 @@
       <div class="content">
         <div id="project-detail" class="project-detail">
           <div class="welcome-message">
-            <h2>Willkommen im Arduino Wiki</h2>
-            <p>Wähle ein Projekt aus der Liste, um den Code und Details anzuzeigen.</p>
-            <div class="stats">
-              <div class="stat">
+            <!-- Animated Background -->
+            <div class="welcome-bg">
+              <div class="welcome-circuit"></div>
+            </div>
+
+            <!-- Hero Section -->
+            <div class="welcome-hero">
+              <div class="welcome-icon">
+                <!-- Arduino Logo (Infinity with +/-) -->
+                <svg viewBox="0 0 100 50" fill="currentColor">
+                  <!-- Left loop with minus -->
+                  <path d="M25,5 C10,5 2,15 2,25 C2,35 10,45 25,45 C35,45 42,38 47,30 L50,25 L47,20 C42,12 35,5 25,5 Z M30,27 H15 V23 H30 Z"/>
+                  <!-- Right loop with plus -->
+                  <path d="M75,5 C65,5 58,12 53,20 L50,25 L53,30 C58,38 65,45 75,45 C90,45 98,35 98,25 C98,15 90,5 75,5 Z M83,27 H77 V33 H73 V27 H67 V23 H73 V17 H77 V23 H83 Z"/>
+                </svg>
+              </div>
+              <h2>Willkommen im Arduino Helper</h2>
+              <p class="welcome-subtitle">Deine Sammlung von Arduino-Projekten und Code-Beispielen</p>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="welcome-stats">
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v1M12 5a5 5 0 0 1 5 5c0 2.76-2.5 5-5 5s-5-2.24-5-5a5 5 0 0 1 5-5z"/>
+                    <path d="M9 18h6M10 22h4"/>
+                  </svg>
+                </div>
                 <span class="stat-number" id="total-projects">40</span>
                 <span class="stat-label">Projekte</span>
               </div>
-              <div class="stat">
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 20h16M4 4h16M8 8h8v8H8z"/>
+                  </svg>
+                </div>
                 <span class="stat-number">6</span>
                 <span class="stat-label">Kategorien</span>
               </div>
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                  </svg>
+                </div>
+                <span class="stat-number">1200+</span>
+                <span class="stat-label">Zeilen Code</span>
+              </div>
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="welcome-features">
+              <div class="feature-card">
+                <div class="feature-icon feature-icon-wiki">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    <path d="M8 7h8M8 11h8M8 15h5"/>
+                  </svg>
+                </div>
+                <h3>Wiki durchsuchen</h3>
+                <p>Entdecke 40 fertige Arduino-Projekte mit vollständigem Code</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon feature-icon-generator">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                  </svg>
+                </div>
+                <h3>Code generieren</h3>
+                <p>Erstelle eigenen Arduino-Code mit dem visuellen Generator</p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon feature-icon-ide">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                    <path d="M8 21h8M12 17v4"/>
+                    <path d="M7 8l-2 2 2 2M17 8l2 2-2 2M14 7l-4 6"/>
+                  </svg>
+                </div>
+                <h3>In IDE öffnen</h3>
+                <p>Starte den Code direkt in der Arduino IDE</p>
+              </div>
+            </div>
+
+            <!-- Quick Start Hint -->
+            <div class="welcome-hint">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+              <span>Wähle ein Projekt aus der Liste links, um zu starten</span>
             </div>
           </div>
         </div>
@@ -269,19 +353,39 @@
           <button id="reset-btn" class="btn btn-danger">Reset</button>
         </div>
 
-        <div class="code-preview">
-          <div class="code-preview-header">
-            <h3>Generierter Code</h3>
-            <button class="btn-copy" id="copy-generated-btn" title="Code kopieren">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-              </svg>
-              <span>Kopieren</span>
-            </button>
+        <div class="output-section">
+          <div class="output-tabs">
+            <button class="output-tab active" data-tab="code">Code</button>
+            <button class="output-tab" data-tab="diagram">Schaltplan <span class="beta-badge">(Beta)</span></button>
           </div>
-          <pre id="generated-code"><code>// Wähle Komponenten und füge Regeln hinzu,
+
+          <div class="output-panel active" id="panel-code">
+            <div class="code-preview-header">
+              <h3>Generierter Code</h3>
+              <button class="btn-copy" id="copy-generated-btn" title="Code kopieren">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span>Kopieren</span>
+              </button>
+            </div>
+            <pre id="generated-code"><code>// Wähle Komponenten und füge Regeln hinzu,
 // um Arduino-Code zu generieren.</code></pre>
+          </div>
+
+          <div class="output-panel" id="panel-diagram">
+            <div class="diagram-container" id="breadboard-diagram">
+              <div class="diagram-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="placeholder-icon">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M9 3v18"/>
+                </svg>
+                <p>Wähle Komponenten aus und klicke "Code generieren"</p>
+                <p class="hint">Der Schaltplan wird automatisch erstellt</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -292,6 +396,24 @@
     <span class="version">v1.0.0</span>
   </footer>
 
+  <!-- Custom Dialog Modal -->
+  <div id="dialog-overlay" class="dialog-overlay hidden">
+    <div class="dialog-box">
+      <div class="dialog-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 9v4m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+        </svg>
+      </div>
+      <h3 class="dialog-title">Zurücksetzen?</h3>
+      <p class="dialog-message">Möchtest du wirklich alle Eingaben zurücksetzen?</p>
+      <div class="dialog-buttons">
+        <button id="dialog-cancel" class="dialog-btn dialog-btn-cancel">Abbrechen</button>
+        <button id="dialog-confirm" class="dialog-btn dialog-btn-confirm">Zurücksetzen</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/src/diagram.js"></script>
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>
